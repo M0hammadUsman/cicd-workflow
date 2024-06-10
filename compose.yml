@@ -1,0 +1,10 @@
+
+services:
+  cicd-workflow:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: usman243/cicd-workflow
+    container_name: cicd-workflow
+    ports:
+      - 8080:8080
