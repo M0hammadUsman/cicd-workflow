@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: CICD WorkFlow
+
+  output:
+    ansi:
+      enabled: always
