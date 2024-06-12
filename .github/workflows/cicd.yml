@@ -9,12 +9,12 @@ on:
 
 jobs:
   build:
-    runs-on: self-contained
+    runs-on: self-hosted
 
     steps:
 
       - name: Clean up workspace
-        run: sudu rm -rf ${{ github.workspace }}/*
+        run: sudo rm -rf ${{ github.workspace }}/*
 
       - uses: actions/checkout@v4
 
