@@ -13,19 +13,19 @@ jobs:
 
     steps:
 
+      - name: Root login
+        run: sudo -i
+
       - name: Clean up workspace
         run: sudo rm -rf ${{ github.workspace }}/*
 
       - uses: actions/checkout@v4
-
-      - name: Remove old .env file
-        run: rm -f .env || true
-
-      - name: Set up a new .env file
-        run: echo ${{ secrets.env }} >> .env
 
       - name: Remove previous docker image
         run: docker rmi usman243/cicd-workflows || true
 
       - name: Build & restart docker-compose
         run: docker-compose up -d --build
+
+      - name: Exit root user
+        run: su - ubuntu
