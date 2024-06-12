@@ -1,0 +1,31 @@
+
+name: CICD_WORKFLOW_PIPELINE
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: self-contained
+
+    steps:
+
+      - name: Clean up workspace
+        run: sudu rm -rf ${{ github.workspace }}/*
+
+      - uses: actions/checkout@v4
+
+      - name: Remove old .env file
+        run: rm -f .env || true
+
+      - name: Set up a new .env file
+        run: echo ${{ secrets.env }} >> .env
+
+      - name: Remove previous docker image
+        run: docker rmi usman243/cicd-workflows || true
+
+      - name: Build & restart docker-compose
+        run: docker-compose up -d --build
