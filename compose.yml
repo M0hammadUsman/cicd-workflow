@@ -4,7 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    image: usman243/cicd-workflow
+    image: usman243/cicd-workflow:0.0.1-SNAPSHOT
     container_name: cicd-workflow
     ports:
       - 8080:8080
+    restart: unless-stopped

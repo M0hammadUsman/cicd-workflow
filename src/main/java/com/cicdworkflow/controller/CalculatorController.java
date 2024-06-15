@@ -17,4 +17,9 @@ public class CalculatorController {
 		return calculatorService.add(a, b);
 	}
 	
+	@GetMapping
+	public String hello() {
+		return "Hello World";
+	}
+
 }
